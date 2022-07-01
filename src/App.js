@@ -1,24 +1,78 @@
-import logo from './logo.svg';
+import { lazy, Suspense } from 'react';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion';
+
+import { Login } from './views/login/Login';
+import { Register } from './views/register/Register';
+import { Tasks } from './views/tasks/Tasks';
 import './App.css';
 
-function App() {
+const Error404 = lazy(() => import("./views/error404/Error404"))
+
+const RequireAuth = ({ children }) => { //Recibe como propiedad los hijos EN ESTE CASO TASKS
+  if (!localStorage.getItem("logged")) {
+    return <Navigate to='/login' replace={true} />
+  }
+  return children
+}
+
+const pageTransition = {
+  in: {
+    opacity: 1,
+  },
+  out: {
+    opacity: 0
+  }
+}
+const App = () => {
+  const location = useLocation()
+  //AnimatePresence Esta atento a cuando un componente se monta y desmonta para ejecutar una transicion
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        <Route path='/'
+          element={
+            <RequireAuth>
+              <motion.div
+                className='page'
+                initial='out'
+                animate='in'
+                exit='out'
+                variants={pageTransition}>
+                <Tasks />
+              </motion.div>
+            </RequireAuth>
+          }
+        />
+        <Route path='/login'
+          element={
+            <motion.div
+              className='page'
+              initial='out'
+              animate='in'
+              exit='out'
+              variants={pageTransition}>
+              <Login />
+            </motion.div>
+          }
+        />
+        <Route path='*'
+          element={
+            <motion.div
+              className='page'
+              initial='out'
+              animate='in'
+              exit='out'
+              variants={pageTransition}>
+              <Suspense fallback={<div className='container'>Cargando...</div>}>
+                <Error404 />
+              </Suspense>
+            </motion.div>
+          }
+        />
+        {/* <Register /> */}
+      </Routes>
+    </AnimatePresence>
   );
 }
 
