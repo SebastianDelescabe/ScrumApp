@@ -42,7 +42,7 @@ export const Login = () => {
     return (
         <div className='auth'>
             <form onSubmit={handleSubmit}>
-                <h1>Iniciar Sesión</h1>
+                <h1>Iniciar sesión</h1>
                 <div>
                     <label>Email</label>
                     <input

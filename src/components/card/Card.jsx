@@ -3,8 +3,8 @@ import React from 'react'
 export const Card = ({ data: { title, dateTime, creator, description, type, priority } }) => {
 
     const limitString = (str) => {
-        if (str.length > 370)
-            return { string: str.slice(0, 250).concat("..."), addButton: true }
+        if (str.length > 170)
+            return { string: str.slice(0, 55).concat("..."), addButton: true };
         return { string: str, addButton: false }
     }
 

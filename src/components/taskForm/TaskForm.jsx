@@ -58,10 +58,10 @@ export const TaskForm = () => {
                             <option value="inProcess">En Proceso</option>
                             <option value="finished">Terminada</option>
                         </select>
+                        {errors.status && touched.status && (
+                            <span className="error-message">{errors.status}</span>
+                        )}
                     </div>
-                    {errors.status && touched.status && (
-                        <span className="error-message">{errors.status}</span>
-                    )}
                     <div>
                         <select
                             name="priority"
@@ -74,10 +74,10 @@ export const TaskForm = () => {
                             <option value="midium">Media</option>
                             <option value="high">Alta</option>
                         </select>
+                        {errors.priority && touched.priority && (
+                            <span className="error-message">{errors.priority}</span>
+                        )}
                     </div>
-                    {errors.priority && touched.priority && (
-                        <span className="error-message">{errors.priority}</span>
-                    )}
                 </div>
                 <div>
                     <textarea

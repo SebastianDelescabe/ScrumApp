@@ -13,7 +13,7 @@ export const cardsData = [
         title: 'task 10',
         creator: 'Sebastian Delescabe',
         dateTime: '12/01/1993 16:04',
-        description: 'Tarea fake',
+        description: 'Tarea fakessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
         type: 'inProcess',
         priority: 'high'
     },
